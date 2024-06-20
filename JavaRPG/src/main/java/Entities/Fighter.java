@@ -1,4 +1,4 @@
-package Player;
+package Entities;
 
 public class Fighter extends Player{
 

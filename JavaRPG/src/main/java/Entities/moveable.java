@@ -1,4 +1,4 @@
-package Player;
+package Entities;
 
 public interface moveable {
     void moveUp();

@@ -1,4 +1,4 @@
-package Player;
+package Entities;
 
 public abstract class GameObject{
     private int ID;
