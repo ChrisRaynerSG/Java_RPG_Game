@@ -23,8 +23,8 @@ public abstract class Player extends GameObject{
     public int isExperienceEnoughToLevelUp(int experience, int level){
         if(experience >= experienceNeeded(level)){
             while(experience>= experienceNeeded(level)){
-            levelUp();
             experience -= experienceNeeded(level);
+            levelUp();
             }
             return experience;
         }
