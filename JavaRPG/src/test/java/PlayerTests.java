@@ -44,14 +44,16 @@ public class PlayerTests {
         return Stream.of(
                 Arguments.of(1600,1,600),
                 Arguments.of(3205,1,205),
-                Arguments.of(12034,1,2034)
+                Arguments.of(12034,1,2034),
+                Arguments.of(12034,3,34)
         );
     }
     public static Stream<Arguments> givenExperiencePlayerShouldLevelUpAndGainAdditionalLevelsIfRequired(){
         return Stream.of(
                 Arguments.of(1600,1,2),
                 Arguments.of(3205,2,3),
-                Arguments.of(12034,1,5)
+                Arguments.of(12034,1,5),
+                Arguments.of(26753,6,9)
         );
     }
 }

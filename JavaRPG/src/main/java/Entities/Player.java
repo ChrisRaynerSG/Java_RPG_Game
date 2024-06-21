@@ -21,21 +21,24 @@ public abstract class Player extends GameObject{
 
 
     public int isExperienceEnoughToLevelUp(int experience, int level){
+        this.level = level;
         if(experience >= experienceNeeded(level)){
-            while(experience>= experienceNeeded(level)){
-            experience -= experienceNeeded(level);
-            levelUp();
+            while(experience >= experienceNeeded(level)){
+                levelUp();
+                experience -= experienceNeeded(level);
+                level++;
             }
             return experience;
         }
         return experience;
     }
 
-    public void levelUp(){
+    private void levelUp(){
+        //Maybe call level up class here to deal with text output regarding level up?
         this.level ++;
     }
 
-    public int experienceNeeded(int level){
+    private int experienceNeeded(int level){
         return level*1000;
     }
 
