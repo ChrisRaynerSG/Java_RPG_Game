@@ -2,6 +2,7 @@ import Entities.Player;
 import Entities.Rogue;
 import org.junit.jupiter.api.Assertions;
 import org.junit.jupiter.api.DisplayName;
+import org.junit.jupiter.api.Test;
 import org.junit.jupiter.params.ParameterizedTest;
 import org.junit.jupiter.params.provider.Arguments;
 import org.junit.jupiter.params.provider.MethodSource;
@@ -40,6 +41,36 @@ public class PlayerTests {
         //Assert
         Assertions.assertEquals(expectedLevel,actualLevel);
     }
+
+    @Test
+    @DisplayName("Given a player with class rogue levels up to level 6 then they should have the correct total health")
+    void givenLevelSixRogueThenTotalHealthShouldBeCorrect(){
+        //Arrange
+        int expectedMaxHealth = 350;
+
+        //Act
+        Rogue rogueTest = new Rogue();
+        rogueTest.isExperienceEnoughToLevelUp(15001,1);
+        int actualMaxHealth = rogueTest.getMaxHealth();
+        //Assert
+
+        Assertions.assertEquals(expectedMaxHealth,actualMaxHealth);
+    }
+    @Test
+    @DisplayName("Given a player with class rogue levels up to level 6 then they should have the correct total abilities")
+    void givenLevelSixRogueThenTotalAbilitiesShouldBeCorrect(){
+        //Arrange
+        int expectedTotalAbilities = 4;
+
+        //Act
+        Rogue rogueTest = new Rogue();
+        rogueTest.isExperienceEnoughToLevelUp(15001,1);
+        int actualTotalAbilities = rogueTest.getTotalAbilities();
+        //Assert
+
+        Assertions.assertEquals(expectedTotalAbilities,actualTotalAbilities);
+    }
+
     public static Stream<Arguments> givenExperiencePlayerShouldLevelUpAndRetainAnyExtraExperience(){
         return Stream.of(
                 Arguments.of(1600,1,600),
