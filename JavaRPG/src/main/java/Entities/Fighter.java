@@ -3,6 +3,7 @@ package Entities;
 public class Fighter extends Player{
 
     public Fighter(){
+        setClassName("Fighter");
         setMaxHealth(200);
         setDamageModifier(2);
     }

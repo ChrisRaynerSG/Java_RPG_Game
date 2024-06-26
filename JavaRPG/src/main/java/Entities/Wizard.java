@@ -3,6 +3,7 @@ package Entities;
 public class Wizard extends Player{
 
     public Wizard(){
+        setClassName("Wizard");
         setMaxHealth(100);
         setDamageModifier(1);
     }

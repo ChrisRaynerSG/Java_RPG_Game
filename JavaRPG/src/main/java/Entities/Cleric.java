@@ -3,6 +3,7 @@ package Entities;
 public class Cleric extends Player{
 
     public Cleric(){
+        setClassName("Cleric");
         setMaxHealth(200);
         setDamageModifier(1);
     }

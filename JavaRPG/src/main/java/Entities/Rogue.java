@@ -3,6 +3,7 @@ package Entities;
 public class Rogue extends Player{
 
     public Rogue(){
+        setClassName("Rogue");
         setMaxHealth(100);
         setDamageModifier(3);
 
