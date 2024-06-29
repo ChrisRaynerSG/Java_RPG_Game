@@ -1,20 +1,34 @@
 package appwindow;
 
+import log.LogController;
+
 import javax.swing.*;
 import java.awt.*;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
+import java.time.LocalTime;
 import java.util.ArrayList;
+import java.util.logging.Level;
+
+import static log.LogController.log;
 
 public class AppWindow extends JFrame implements ActionListener {
-    private static int width, height;
 
-    JButton playButton = new JButton("Play");
+    private static int width, height;
+    private final String gameString = "Game";
+    private final String menuString = "Menu";
+    private final String saveString = "Save";
+    private final String loadString = "Load";
+    private final String settingsString = "Settings";
+
+    JButton playButton = new JButton("Resume");
     JButton settingsButton = new JButton("Settings");
-    JButton highScoresButton = new JButton("High Scores");
     JButton saveButton = new JButton("Save Game");
     JButton loadButton = new JButton("Load Game");
-    JButton menuButton = new JButton("Menu");
+    JButton menuButtonGame = new JButton("Menu");
+    JButton menuButtonSettings = new JButton("Menu");
+    JButton menuButtonSave = new JButton("Menu");
+    JButton menuButtonLoad = new JButton("Menu");
     JButton exitButton = new JButton("Exit");
     JButton smallWindow = new JButton("Small");
     JButton mediumWindow = new JButton("Medium");
@@ -31,6 +45,7 @@ public class AppWindow extends JFrame implements ActionListener {
 
 
     public AppWindow(int width, int height){
+        log(Level.INFO,"Application started at " + LocalTime.now());
         AppWindow.width = width;
         AppWindow.height = height;
         mainPanel.setLayout(layout);
@@ -47,8 +62,17 @@ public class AppWindow extends JFrame implements ActionListener {
     private void addButtons(){
         playButton.addActionListener(this);
         exitButton.addActionListener(this);
-        menuButton.addActionListener(this);
+        menuButtonGame.addActionListener(this);
+        menuButtonSettings.addActionListener(this);
+        menuButtonSave.addActionListener(this);
+        menuButtonLoad.addActionListener(this);
         settingsButton.addActionListener(this);
+        saveButton.addActionListener(this);
+        smallWindow.addActionListener(this);
+        mediumWindow.addActionListener(this);
+        largeWindow.addActionListener(this);
+
+
 
         menuPanel.add(settingsButton);
         menuPanel.add(saveButton);
@@ -58,60 +82,83 @@ public class AppWindow extends JFrame implements ActionListener {
         menuPanel.setLayout(new FlowLayout());
 
 
-        gamePanel.add(menuButton);
+        gamePanel.add(menuButtonGame);
 
         settingsPanel.add(smallWindow);
         settingsPanel.add(mediumWindow);
         settingsPanel.add(largeWindow);
-        settingsPanel.add(menuButton);
+        settingsPanel.add(menuButtonSettings);
         settingsPanel.setLayout(new FlowLayout());
 
-        ArrayList<Component> saveButtons = saveButtons();
-        for(Component button : saveButtons){
-            saveScreenPanel.add(button);
-        }
+        saveButtons();
+        saveScreenPanel.add(menuButtonSave);
 
-        mainPanel.add(menuPanel,"Menu");
-        mainPanel.add(gamePanel, "Game");
-        mainPanel.add(settingsPanel,"Settings");
-        mainPanel.add(saveScreenPanel, "Save");
-        mainPanel.add(loadScreenPanel,"Load");
+
+
+        mainPanel.add(menuPanel,menuString);
+        mainPanel.add(gamePanel, gameString);
+        mainPanel.add(settingsPanel,settingsString);
+        mainPanel.add(saveScreenPanel, saveString);
+        mainPanel.add(loadScreenPanel,loadString);
+
         add(mainPanel);
+        layout.show(mainPanel,gameString);
+        log(Level.FINE, "Window populated.");
     }
 
     public void actionPerformed(ActionEvent event){
         Object source = event.getSource();
 
+        String buttonPressed = "Button pressed";
         if(source == exitButton){
+            log(Level.INFO, buttonPressed);
             System.exit(0);
-        } else if (source== menuPanel) {
-            layout.show(mainPanel, "Menu");
+        } else if (source == menuButtonGame) {
+            log(Level.INFO, buttonPressed);
+            layout.show(mainPanel, menuString);
+        } else if (source == menuButtonSettings) {
+            log(Level.INFO, buttonPressed);
+            layout.show(mainPanel, menuString);
+        } else if (source == menuButtonSave) {
+            log(Level.INFO, buttonPressed);
+            layout.show(mainPanel, menuString);
+        } else if (source == menuButtonLoad) {
+            log(Level.INFO, buttonPressed);
+            layout.show(mainPanel, menuString);
         } else if (source==settingsButton) {
-            layout.show(mainPanel,"Settings");
+            log(Level.INFO, buttonPressed);
+            layout.show(mainPanel,settingsString);
         } else if (source == saveButton) {
-            layout.show(mainPanel,"Save");
+            log(Level.INFO, buttonPressed);
+            layout.show(mainPanel,saveString);
         }else if (source == loadButton){
-            layout.show(mainPanel, "Load");
+            log(Level.INFO, buttonPressed);
+            layout.show(mainPanel, loadString);
         } else if(source == smallWindow){
+            log(Level.INFO, buttonPressed);
             windowSize(500,500);
         }else if(source == mediumWindow){
+            log(Level.INFO, buttonPressed);
             windowSize(1280,720);
-        }else if(source== largeWindow){
+        }else if(source == largeWindow){
+            log(Level.INFO, buttonPressed);
             windowSize(1920,1080);
         }
     }
+
     private void windowSize(int width, int height){
         setResizable(true);
         AppWindow.height = height;
         AppWindow.width = width;
         setSize(AppWindow.width,AppWindow.height);
+        setLocationRelativeTo(null);
+        requestFocus();
         setResizable(false);
     }
-    private ArrayList<Component> saveButtons(){
-        ArrayList<Component> saveButtons = new ArrayList<Component>();
+    private void saveButtons(){
         for (int i =0; i<6; i++){
-            saveButtons.add(new JButton("Save " +i));
+            saveScreenPanel.add(new JButton("Save " +i));
+
         }
-        return saveButtons;
     }
 }

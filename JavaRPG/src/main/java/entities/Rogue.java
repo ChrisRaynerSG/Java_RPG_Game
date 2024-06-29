@@ -1,8 +1,13 @@
 package entities;
 
+import log.LogController;
+
+import java.util.logging.Level;
+
 public class Rogue extends Player{
 
     public Rogue(){
+        LogController.log(Level.CONFIG, "New rogue player created");
         setClassName("Rogue");
         setMaxHealth(100);
         setDamageModifier(3);
