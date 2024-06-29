@@ -1,4 +1,4 @@
-package AppWindow;
+package appwindow;
 
 import javax.swing.*;
 import java.awt.*;
@@ -29,16 +29,15 @@ public class AppWindow extends JFrame implements ActionListener {
     JPanel saveScreenPanel = new JPanel();
     JPanel loadScreenPanel = new JPanel();
 
+
     public AppWindow(int width, int height){
         AppWindow.width = width;
         AppWindow.height = height;
+        mainPanel.setLayout(layout);
         setSize(AppWindow.width,AppWindow.height);
         setTitle("RPG Game");
         setResizable(false);
-
-        mainPanel.setLayout(layout);
         addButtons();
-
         setLocationRelativeTo(null);
         setDefaultCloseOperation(EXIT_ON_CLOSE);
         requestFocus();
@@ -50,19 +49,28 @@ public class AppWindow extends JFrame implements ActionListener {
         exitButton.addActionListener(this);
         menuButton.addActionListener(this);
         settingsButton.addActionListener(this);
+
         menuPanel.add(settingsButton);
         menuPanel.add(saveButton);
         menuPanel.add(loadButton);
         menuPanel.add(exitButton);
+
+        menuPanel.setLayout(new FlowLayout());
+
+
         gamePanel.add(menuButton);
+
         settingsPanel.add(smallWindow);
         settingsPanel.add(mediumWindow);
         settingsPanel.add(largeWindow);
         settingsPanel.add(menuButton);
+        settingsPanel.setLayout(new FlowLayout());
+
         ArrayList<Component> saveButtons = saveButtons();
         for(Component button : saveButtons){
             saveScreenPanel.add(button);
         }
+
         mainPanel.add(menuPanel,"Menu");
         mainPanel.add(gamePanel, "Game");
         mainPanel.add(settingsPanel,"Settings");
@@ -87,7 +95,7 @@ public class AppWindow extends JFrame implements ActionListener {
         } else if(source == smallWindow){
             windowSize(500,500);
         }else if(source == mediumWindow){
-            windowSize(1000,1000);
+            windowSize(1280,720);
         }else if(source== largeWindow){
             windowSize(1920,1080);
         }

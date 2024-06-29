@@ -1,4 +1,4 @@
-package Entities;
+package entities;
 
 public abstract class Player extends GameObject implements PlayerActions{
     private String playerName;

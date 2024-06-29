@@ -1,4 +1,4 @@
-package AppWindow;
+package appwindow;
 
 
 public class App {

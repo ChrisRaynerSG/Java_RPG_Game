@@ -1,4 +1,4 @@
-package AppWindow;
+package appwindow;
 import java.awt.*;
 
 public class AppWindowSettings{

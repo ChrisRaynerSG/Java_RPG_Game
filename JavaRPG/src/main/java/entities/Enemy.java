@@ -1,4 +1,4 @@
-package Entities;
+package entities;
 
 public class Enemy extends GameObject {
     private int maxHealth;
