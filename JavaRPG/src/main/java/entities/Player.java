@@ -2,6 +2,7 @@ package Entities;
 
 public abstract class Player extends GameObject implements PlayerActions{
     private String playerName;
+    private String className;
     private int level =1;
     private int experience;
     private int totalExperience;
@@ -12,6 +13,7 @@ public abstract class Player extends GameObject implements PlayerActions{
     private int abilitiesRemaining;
 
     public Player(){
+        setObjectName("Player");
         setLevel(1);
         setExperience(0);
         setTotalExperience(0);
@@ -27,6 +29,14 @@ public abstract class Player extends GameObject implements PlayerActions{
 
     public String getPlayerName(){
         return playerName;
+    }
+
+    public void setClassName(String className){
+        this.className = className;
+    }
+
+    public String getClassName(){
+        return className;
     }
 
     public void setLevel(int level){
@@ -106,6 +116,7 @@ public abstract class Player extends GameObject implements PlayerActions{
     }
 
     public abstract void levelUp();
+
 
     private int experienceNeeded(){
         return level*1000;

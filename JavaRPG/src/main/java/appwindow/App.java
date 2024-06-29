@@ -4,8 +4,7 @@ package AppWindow;
 public class App {
     public static void main(String[] args) {
 
-        AppWindow window = new AppWindow();
+        AppWindow window = new AppWindow(500,500);
 
-        System.out.println(1234%1000);
     }
 }
