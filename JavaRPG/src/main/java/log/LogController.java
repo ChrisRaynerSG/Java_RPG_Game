@@ -28,7 +28,6 @@ public class LogController {
             throw new RuntimeException(e);
         }
     }
-
     public static void log(Level level, String message){
         if(level == Level.SEVERE){
             logger.severe(message);

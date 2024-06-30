@@ -8,7 +8,7 @@ public class App {
 
         LogController logController = new LogController();
         SettingsFileInit settingsFileInit = new SettingsFileInit();
-        AppWindow window = new AppWindow(500,500);
+        AppWindow window = new AppWindow();
 
     }
 }
