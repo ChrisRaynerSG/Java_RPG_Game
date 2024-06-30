@@ -1,4 +1,8 @@
-package Entities;
+package entities;
+
+import log.LogController;
+
+import java.util.logging.Level;
 
 public abstract class Player extends GameObject implements PlayerActions{
     private String playerName;
@@ -13,6 +17,7 @@ public abstract class Player extends GameObject implements PlayerActions{
     private int abilitiesRemaining;
 
     public Player(){
+        LogController.log(Level.CONFIG, "New player created");
         setObjectName("Player");
         setLevel(1);
         setExperience(0);

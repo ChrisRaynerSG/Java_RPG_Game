@@ -1,4 +1,4 @@
-package AppWindow;
+package appwindow;
 
 import javax.swing.*;
 import java.awt.*;

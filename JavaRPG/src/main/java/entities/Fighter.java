@@ -1,8 +1,13 @@
-package Entities;
+package entities;
+
+import log.LogController;
+
+import java.util.logging.Level;
 
 public class Fighter extends Player{
 
     public Fighter(){
+        LogController.log(Level.CONFIG, "New fighter player created");
         setClassName("Fighter");
         setMaxHealth(200);
         setDamageModifier(2);

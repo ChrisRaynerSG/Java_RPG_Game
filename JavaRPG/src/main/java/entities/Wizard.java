@@ -1,8 +1,13 @@
-package Entities;
+package entities;
+
+import log.LogController;
+
+import java.util.logging.Level;
 
 public class Wizard extends Player{
 
     public Wizard(){
+        LogController.log(Level.CONFIG, "New wizard player created");
         setClassName("Wizard");
         setMaxHealth(100);
         setDamageModifier(1);

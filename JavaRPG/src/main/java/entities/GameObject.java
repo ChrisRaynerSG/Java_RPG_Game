@@ -1,4 +1,8 @@
-package Entities;
+package entities;
+
+import log.LogController;
+
+import java.util.logging.Level;
 
 public abstract class GameObject{
     private static int initialID;
@@ -9,6 +13,7 @@ public abstract class GameObject{
     private boolean isVisible;
 
     public GameObject(){
+        LogController.log(Level.CONFIG, "New game object created with ID: " + ID);
         ID = initialID;
         initialID++;
     }
