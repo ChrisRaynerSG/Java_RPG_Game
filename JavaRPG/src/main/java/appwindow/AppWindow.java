@@ -14,7 +14,7 @@ import static log.LogController.log;
 
 public class AppWindow extends JFrame implements ActionListener {
 
-    private static int width, height;
+    private static Dimension windowSize;
     private final String gameString = "Game";
     private final String menuString = "Menu";
     private final String saveString = "Save";
@@ -45,11 +45,10 @@ public class AppWindow extends JFrame implements ActionListener {
 
 
     public AppWindow(int width, int height){
+        windowSize = SettingsFileRead.readSettingsFileWindowSize();
         log(Level.INFO,"Application started at " + LocalTime.now());
-        AppWindow.width = width;
-        AppWindow.height = height;
         mainPanel.setLayout(layout);
-        setSize(AppWindow.width,AppWindow.height);
+        setSize(windowSize);
         setTitle("RPG Game");
         setResizable(false);
         addButtons();
@@ -72,15 +71,12 @@ public class AppWindow extends JFrame implements ActionListener {
         mediumWindow.addActionListener(this);
         largeWindow.addActionListener(this);
 
-
-
         menuPanel.add(settingsButton);
         menuPanel.add(saveButton);
         menuPanel.add(loadButton);
         menuPanel.add(exitButton);
 
         menuPanel.setLayout(new FlowLayout());
-
 
         gamePanel.add(menuButtonGame);
 
@@ -136,21 +132,22 @@ public class AppWindow extends JFrame implements ActionListener {
             layout.show(mainPanel, loadString);
         } else if(source == smallWindow){
             log(Level.INFO, buttonPressed);
+            SettingsFileWrite.writeToFileWindowSize("Window size: Small");
             windowSize(500,500);
         }else if(source == mediumWindow){
             log(Level.INFO, buttonPressed);
+            SettingsFileWrite.writeToFileWindowSize("Window size: Medium");
             windowSize(1280,720);
         }else if(source == largeWindow){
             log(Level.INFO, buttonPressed);
+            SettingsFileWrite.writeToFileWindowSize("Window size: Large");
             windowSize(1920,1080);
         }
     }
-
     private void windowSize(int width, int height){
         setResizable(true);
-        AppWindow.height = height;
-        AppWindow.width = width;
-        setSize(AppWindow.width,AppWindow.height);
+        windowSize = new Dimension(width,height);
+        setSize(windowSize);
         setLocationRelativeTo(null);
         requestFocus();
         setResizable(false);
@@ -158,7 +155,6 @@ public class AppWindow extends JFrame implements ActionListener {
     private void saveButtons(){
         for (int i =0; i<6; i++){
             saveScreenPanel.add(new JButton("Save " +i));
-
         }
     }
 }
