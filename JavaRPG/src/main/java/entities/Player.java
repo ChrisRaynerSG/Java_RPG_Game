@@ -132,4 +132,10 @@ public abstract class Player extends GameObject implements PlayerActions{
         this.abilitiesRemaining = totalAbilities;
     }
 
+    public boolean isPlayerDead(){
+        if(this.currentHealth <=0){
+            return false;
+        }
+        return true;
+    }
 }

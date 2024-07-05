@@ -2,6 +2,8 @@ package appwindow;
 
 import entities.Enemy;
 import entities.GameObject;
+import entities.Player;
+import entities.Rogue;
 import entities.enemies.Enemies;
 import entities.enemies.Kobold;
 import gameloop.EnemyFactory;
@@ -14,16 +16,12 @@ import java.util.concurrent.TimeUnit;
 import java.util.logging.Level;
 
 import static appwindow.AppWindow.*;
+import static java.lang.Thread.sleep;
 import static log.LogController.log;
 
 public class NewGame{
 
     HashSet<Enemy> enemiesContainer = new HashSet<>();
-
-
-
-
-
     private static NewGame newGame;
     private static boolean isGameRunning;
 
@@ -39,19 +37,19 @@ public class NewGame{
 
     public void startGame(){
         isGameRunning = true;
-        for(int i = 0; i < 101; i++){
-            int randomInt = (int)(Math.random()*4);
-            enemiesContainer.add(EnemyFactory.getEnemy(Enemies.getEnemyType(randomInt)));
-            log(Level.FINER, "Enemy of type: " +Enemies.getEnemyType(randomInt) + " added to enemy pool");
-        }
-        for(Enemy enemy: enemiesContainer){
-            log(Level.FINEST, enemy.getObjectName());
-        }
+        Player player = new Rogue();
+
         while(isGameRunning){
             gameText.setText("Welcome");
-            //todo stuff for the game to happen.
-            isGameRunning = false;
-
+            try{
+                player.setCurrentHealth(player.getCurrentHealth()-10);
+                sleep(1000);
+                gameText.setText(String.valueOf(player.getCurrentHealth()));
+            }
+            catch (InterruptedException e){
+                throw new RuntimeException(e);
+            }
+            isGameRunning = player.isPlayerDead();
         }
     }
 }
