@@ -27,6 +27,7 @@ public class DatabaseConnection {
         catch (SQLException e){
             log(Level.CONFIG,"Database not found attempting to create rpg_database");
             Connection createConnection = createDatabase(getProperties());
+            assert createConnection != null;
             DatabaseInstantiation initialSetup = new DatabaseInstantiation(createConnection);
             return createConnection;
         }
@@ -73,9 +74,19 @@ public class DatabaseConnection {
     public static void closeConnection(){
         try {
             connection.close();
+            log(Level.INFO, "Connection Closed");
         }
         catch (SQLException e){
             log(Level.WARNING,"No connection to close found");
+        }
+    }
+    public static boolean isConnectionClosed(){
+        try{
+            return connection.isClosed();
+        }
+        catch (SQLException e){
+            log(Level.WARNING, "Unable to determine database connectivity");
+            return true;
         }
     }
 }

@@ -7,7 +7,6 @@ import entities.Rogue;
 import entities.enemies.Enemies;
 import entities.enemies.Kobold;
 import gameloop.EnemyFactory;
-
 import java.util.Collection;
 import java.util.HashSet;
 import java.util.Iterator;

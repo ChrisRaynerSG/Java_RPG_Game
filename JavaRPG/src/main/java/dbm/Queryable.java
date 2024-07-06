@@ -1,5 +1,7 @@
 package dbm;
 
+import java.sql.ResultSet;
+
 public interface Queryable {
 
     String DATABASE_NAME = "rpg_database";
@@ -11,6 +13,7 @@ public interface Queryable {
     String INVENTORY_TABLE = "inventory";
     String HIGH_SCORES_TABLE = "high_scores";
     String SELECT = "SELECT ";
+    String WHERE = "WHERE";
 
     String ITEMS_TABLE_COLUMNS = "(item_name, item_value, is_key_item, item_description, healing_amount, armour_bonus, attack_bonus, damage_bonus)";
     String WEAK_POTION = "('Weak healing potion', 20, false, 'A weak potion healing 50HP.', 50, NULL, NULL, NULL );";
@@ -49,12 +52,22 @@ public interface Queryable {
     String RUBBER_CHICKEN = "('Rubber chicken', 5, false, 'Why would you even equip this? A joke chicken granting -4 attack bonus and x1 damage modifier.', NULL, NULL, -4, 1 );";
     String DUNGEON_KEY = "('Dungeon key', 1, true, 'A key to unlock doors in a dungeon, but which one?', NULL, NULL, NULL, NULL );";
     String CASTLE_KEY = "('Castle key', 1, true, 'A key to unlock doors in a castle, but where is the castle?', NULL, NULL, NULL, NULL );";
-    String TOMB_KEY = "('Tomb key', 1, true, 'A key to unlock doors in the tomb of one million giant bunnies of doom and despair and general chaose. But why would you want to go there?', NULL, NULL, NULL, NULL );";
+    String TOMB_KEY = "('Tomb key', 1, true, 'A key to unlock doors in the tomb of one million giant bunnies of doom and despair and general chaos. But why would you want to go there?', NULL, NULL, NULL, NULL );";
     String ORB_OF_ORBING = "('Orb of orbing', 1000000, true, 'With this magical orb, you can orb all you like, because its the orb of orbing of course. The most valuable item in the game, shame you wont be able to sell it.', NULL, NULL, NULL, NULL );";
 
     String[] GAME_ITEMS_ARRAY = {WEAK_POTION,AVERAGE_POTION,STRONG_POTION,MAX_POTION,ABILITY_POTION,ABILITY_UP_POTION,XP_POTION,ELIXIR,LEATHER_ARMOUR,PADDED_ARMOUR,CHAIN_ARMOUR,SPLINT_ARMOUR,HALF_PLATE_ARMOUR
     ,PLATE_ARMOUR,MAGIC_ARMOUR,DAGGER,SHORT_SWORD,RAPIER,BROADSWORD,LONGSWORD,BASTARD_SWORD,GREATSWORD,MAGIC_GREATSWORD,HAND_AXE,BATTLE_AXE,GREAT_AXE,CLUB,MACE,HEAVY_MACE,GREAT_MACE,DOM,SWORD_OF_SLICING
     ,MOB,RUBBER_CHICKEN,DUNGEON_KEY,CASTLE_KEY,TOMB_KEY,ORB_OF_ORBING};
+
+    ResultSet getInventoryResults(int PlayerID);
+    ResultSet getResult(String query);
+    void updateTable(String query);
+    void addToInventory(int itemID, int playerID);
+    void removeFromInventory(int itemID, int playerID);
+    void createNewPlayer(String playerName);
+    void updatePlayerScore(int playerID, int score);
+    void updatePlayerHighScore(int PlayerID);
+
 
 
 }
