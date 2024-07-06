@@ -9,7 +9,7 @@ import java.util.logging.Level;
 import static log.LogController.*;
 
 public class DatabaseConnection {
-    private static Properties properties;
+
     private static Connection connection;
     private static final String URL = "url";
     private static final String USERNAME = "username";
@@ -17,7 +17,7 @@ public class DatabaseConnection {
 
     public static Connection getConnection(){
         try {
-            properties = getProperties();
+            Properties properties = getProperties();
             connection = DriverManager.getConnection(
                     properties.getProperty(URL),
                     properties.getProperty(USERNAME),
@@ -26,11 +26,14 @@ public class DatabaseConnection {
         }
         catch (SQLException e){
             log(Level.CONFIG,"Database not found attempting to create rpg_database");
-            return createDatabase();
+            Connection createConnection = createDatabase(getProperties());
+            DatabaseInstantiation initialSetup = new DatabaseInstantiation(createConnection);
+            return createConnection;
         }
     }
 
     private static Properties getProperties(){
+        Properties properties = new Properties();
         try{
             properties.load(new FileReader("src/main/resources/db.properties"));
             log(Level.FINE,"db.properties loaded");
@@ -40,6 +43,7 @@ public class DatabaseConnection {
             try{
                 BufferedWriter writer = new BufferedWriter(new FileWriter("src/main/resources/db.properties"));
                 writer.write("url = jdbc:mysql://localhost:3306/rpg_database\nusername = root\npassword = ");
+                writer.close();
                 properties.load(new FileReader("src/main/resources/db.properties"));
                 log(Level.CONFIG,"db.properties created with initial settings");
                 return properties;
@@ -51,11 +55,11 @@ public class DatabaseConnection {
         }
     }
 
-    private static Connection createDatabase(){
+    private static Connection createDatabase(Properties properties){
         try{
             connection = DriverManager.getConnection("jdbc:mysql://localhost:3306/",properties.getProperty(USERNAME), properties.getProperty(PASSWORD));
             Statement createDbStatement = connection.createStatement();
-            createDbStatement.executeQuery(Queryable.CREATE_DATABASE);
+            createDbStatement.execute(Queryable.CREATE_DATABASE);
             return DriverManager.getConnection(
                     properties.getProperty(URL),
                     properties.getProperty(USERNAME),
