@@ -1,7 +1,5 @@
 package entities.enemies;
 
-import entities.Enemy;
-
 public class Kobold extends Enemy {
     public Kobold(){
         this.setObjectName("Kobold");

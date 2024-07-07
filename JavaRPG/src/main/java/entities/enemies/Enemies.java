@@ -1,7 +1,5 @@
 package entities.enemies;
 
-import entities.Enemy;
-
 public enum Enemies {
     GOBLIN(0, "Goblin"),
     KOBOLD(1, "Kobold"),

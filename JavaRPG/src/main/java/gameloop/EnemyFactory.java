@@ -1,6 +1,5 @@
 package gameloop;
 
-import entities.*;
 import entities.enemies.*;
 
 public class EnemyFactory {

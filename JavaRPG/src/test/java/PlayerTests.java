@@ -1,5 +1,5 @@
-import entities.Player;
-import entities.Rogue;
+import entities.player.Player;
+import entities.player.Rogue;
 import org.junit.jupiter.api.Assertions;
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;

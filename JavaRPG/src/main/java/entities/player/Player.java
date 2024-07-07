@@ -1,20 +1,32 @@
-package entities;
+package entities.player;
 
+import dbm.DatabaseConnection;
+import dbm.DatabaseQuery;
+import dbm.ItemValues;
+import entities.GameObject;
 import log.LogController;
 
 import java.util.logging.Level;
 
 public abstract class Player extends GameObject implements PlayerActions{
+
+    //todo Player has S.P.E.C.I.A.L. / Abilities?
+
     private String playerName;
     private String className;
+    private int databaseID;
     private int level =1;
     private int experience;
     private int totalExperience;
     private int maxHealth;
     private int currentHealth;
+    private int attackBonus;
     private int damageModifier;
+    private int armourClass;
     private int totalAbilities;
     private int abilitiesRemaining;
+    private String currentWeapon;
+    private String currentArmour;
 
     public Player(){
         LogController.log(Level.CONFIG, "New player created");
@@ -26,14 +38,23 @@ public abstract class Player extends GameObject implements PlayerActions{
         setDamageModifier(3);
         setTotalAbilities(3);
         setAbilitiesRemaining(getTotalAbilities());
+        setArmourClass(10);
+
     }
 
     public void setPlayerName(String playerName){
         this.playerName = playerName;
+        if(databaseID == 0){
+            initialPlayerDbSetup();
+        }
     }
 
     public String getPlayerName(){
         return playerName;
+    }
+
+    public int getDatabaseID(){
+        return databaseID;
     }
 
     public void setClassName(String className){
@@ -84,12 +105,28 @@ public abstract class Player extends GameObject implements PlayerActions{
         return this.currentHealth;
     }
 
+    public void setAttackBonus(int attackBonus){
+        this.attackBonus = attackBonus;
+    }
+
+    public int getAttackBonus(){
+        return attackBonus;
+    }
+
     public void setDamageModifier(int damageModifier){
         this.damageModifier = damageModifier;
     }
 
     public int getDamageModifier(){
         return damageModifier;
+    }
+
+    public void setArmourClass(int armourClass){
+        this.armourClass = armourClass;
+    }
+
+    public int getArmourClass(){
+        return armourClass;
     }
 
     public void setTotalAbilities(int totalAbilities){
@@ -108,6 +145,21 @@ public abstract class Player extends GameObject implements PlayerActions{
         return abilitiesRemaining;
     }
 
+    public void setCurrentWeapon(String currentWeapon){
+        this.currentWeapon = currentWeapon;
+    }
+    public String getCurrentWeapon(){
+        return currentWeapon;
+    }
+
+    public void setCurrentArmour(String currentArmour){
+        this.currentArmour = currentArmour;
+    }
+
+    public String getCurrentArmour(){
+        return currentArmour;
+    }
+
     public int isExperienceEnoughToLevelUp(int experience, int level){
         this.level = level;
         if(experience >= experienceNeeded()){
@@ -122,7 +174,6 @@ public abstract class Player extends GameObject implements PlayerActions{
 
     public abstract void levelUp();
 
-
     private int experienceNeeded(){
         return level*1000;
     }
@@ -133,9 +184,18 @@ public abstract class Player extends GameObject implements PlayerActions{
     }
 
     public boolean isPlayerDead(){
-        if(this.currentHealth <=0){
-            return false;
-        }
-        return true;
+        return this.currentHealth > 0;
     }
+    public boolean isOverMaxHealth(int healAmount){
+        return currentHealth + healAmount > maxHealth;
+    }
+    public boolean hasNoAbilitiesRemaining(){
+        return abilitiesRemaining == 0;
+    }
+    private void initialPlayerDbSetup(){
+        DatabaseQuery initialDbSetup = new DatabaseQuery(DatabaseConnection.getConnection());
+        databaseID = initialDbSetup.createNewPlayer(playerName);
+        initialDbSetup.addToInventory(ItemValues.getItemId("Leather armour"), databaseID);
+    }
+
 }
