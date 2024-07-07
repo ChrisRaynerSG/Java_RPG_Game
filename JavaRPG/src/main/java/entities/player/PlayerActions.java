@@ -1,10 +1,11 @@
-package entities;
+package entities.player;
 
 public interface PlayerActions {
 
     void playerRest();
 //    void useAttack();
-//    void useAbility();
+    String[] useAbility();
+//    void useItem();
 
 
 

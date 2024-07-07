@@ -1,7 +1,5 @@
 package entities.enemies;
 
-import entities.Enemy;
-
 public class Orc extends Enemy {
     public Orc(){
         this.setObjectName("Orc");

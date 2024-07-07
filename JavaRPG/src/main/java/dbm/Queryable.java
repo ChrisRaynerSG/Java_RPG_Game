@@ -64,7 +64,7 @@ public interface Queryable {
     void updateTable(String query);
     void addToInventory(int itemID, int playerID);
     void removeFromInventory(int itemID, int playerID);
-    void createNewPlayer(String playerName);
+    int createNewPlayer(String playerName);
     void updatePlayerScore(int playerID, int score);
     void updatePlayerHighScore(int PlayerID);
 

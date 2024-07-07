@@ -1,10 +1,11 @@
-package entities;
+package entities.enemies;
+
+import entities.GameObject;
 
 public class Enemy extends GameObject {
     private int maxHealth;
     private int currentHealth;
     private int experienceGiven;
-
 
     public int getMaxHealth() {
         return maxHealth;
@@ -29,4 +30,6 @@ public class Enemy extends GameObject {
     public void setExperienceGiven(int experienceGiven) {
         this.experienceGiven = experienceGiven;
     }
+
+
 }

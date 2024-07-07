@@ -68,4 +68,18 @@ public class DatabaseResults{
             return -1;
         }
     }
+    public static int[] getTwoIntResult(ResultSet twoIntResultSet) {
+        int[] results = {0,0};
+        try {
+            while (twoIntResultSet.next()) {
+                results[0] = twoIntResultSet.getInt(1);
+                results[1] = twoIntResultSet.getInt(2);
+            }
+            return results;
+        }
+        catch (SQLException e) {
+            log(Level.WARNING, "Unable to get single int result!");
+            return results;
+        }
+    }
 }

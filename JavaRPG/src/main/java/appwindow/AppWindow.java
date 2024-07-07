@@ -1,5 +1,7 @@
 package appwindow;
 
+import gameloop.NewGame;
+
 import javax.swing.*;
 import java.awt.*;
 import java.awt.event.ActionEvent;
@@ -25,29 +27,29 @@ public class AppWindow extends JFrame implements ActionListener {
     JButton loadGameMenuButton = new JButton ("Load Game");
     JButton exitButton = new JButton("Exit");
 
-    static JButton resumeButton = new JButton("Resume");
-    static JButton settingsButton = new JButton("Settings");
-    static JButton saveButton = new JButton("Save Game");
-    static JButton loadButton = new JButton("Load Game");
-    static JButton menuButtonGame = new JButton("Menu");
-    static JButton mainMenuButtonSettings = new JButton("Back");
-    static JButton menuButtonSave = new JButton("Menu");
-    static JButton menuButtonLoad = new JButton("Menu");
-    static JButton mainMenuButtonGameMenu = new JButton ("Main Menu");
-    static JButton smallWindow = new JButton("Small");
-    static JButton mediumWindow = new JButton("Medium");
-    static JButton largeWindow = new JButton("Large");
-    static JTextArea gameText = new JTextArea();
+    public static JButton resumeButton = new JButton("Resume");
+    public static JButton settingsButton = new JButton("Settings");
+    public static JButton saveButton = new JButton("Save Game");
+    public static JButton loadButton = new JButton("Load Game");
+    public static JButton menuButtonGame = new JButton("Menu");
+    public static JButton mainMenuButtonSettings = new JButton("Back");
+    public static JButton menuButtonSave = new JButton("Menu");
+    public static JButton menuButtonLoad = new JButton("Menu");
+    public static JButton mainMenuButtonGameMenu = new JButton ("Main Menu");
+    public static JButton smallWindow = new JButton("Small");
+    public static JButton mediumWindow = new JButton("Medium");
+    public static JButton largeWindow = new JButton("Large");
+    public static JTextArea gameText = new JTextArea();
 
     static CardLayout layout = new CardLayout();
 
-    static JPanel mainPanel = new JPanel();
-    static JPanel startMenuPanel = new JPanel();
-    static JPanel gamePanel = new JPanel();
-    static JPanel gameMenuPanel = new JPanel();
-    static JPanel settingsPanel = new JPanel();
-    static JPanel saveScreenPanel = new JPanel();
-    static JPanel loadScreenPanel = new JPanel();
+    public static JPanel mainPanel = new JPanel();
+    public static JPanel startMenuPanel = new JPanel();
+    public static JPanel gamePanel = new JPanel();
+    public static JPanel gameMenuPanel = new JPanel();
+    public static JPanel settingsPanel = new JPanel();
+    public static JPanel saveScreenPanel = new JPanel();
+    public static JPanel loadScreenPanel = new JPanel();
 
     BoxLayout mainMenuLayout = new BoxLayout(startMenuPanel,BoxLayout.Y_AXIS);
     BoxLayout gamePanelLayout = new BoxLayout(gameMenuPanel,BoxLayout.Y_AXIS);
