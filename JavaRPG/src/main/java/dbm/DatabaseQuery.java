@@ -69,6 +69,16 @@ public class DatabaseQuery implements Queryable {
         updateTable(query);
         log(Level.FINE,"Item with ID: " + itemID + " removed from player: " + playerID + "'s inventory.");
     }
+    public int getArmourBonus(int itemID){
+        String getArmourBonus = SELECT + " armour_bonus FROM " + DATABASE_NAME + "." + GAME_ITEMS_TABLE + " WHERE item_id = " + itemID + ";";
+        return DatabaseResults.getSingleIntResult(getResult(getArmourBonus));
+    }
+
+    public int[] getWeaponModifiers(int itemID){
+        String getWeaponModifiers = SELECT + " attack_bonus, damage_bonus FROM " + DATABASE_NAME + "." + GAME_ITEMS_TABLE + " WHERE item_id = " + itemID +";";
+        return DatabaseResults.getTwoIntResult(getResult(getWeaponModifiers));
+    }
+
     @Override
     public int createNewPlayer(String playerName){ //maybe int return type to manage playerID in database
         String createNewPlayerQuery = INSERT_INTO + DATABASE_NAME + "." + PLAYERS_TABLE + "(player_name, player_score) VALUES ('" + playerName + "', 0 );";
@@ -92,4 +102,5 @@ public class DatabaseQuery implements Queryable {
         String queryHighScoreUpdate = INSERT_INTO + DATABASE_NAME + "." + HIGH_SCORES_TABLE + "(score, player_id) VALUES (" + score + "," + playerID + ");";
         updateTable(queryHighScoreUpdate);
     }
+
 }

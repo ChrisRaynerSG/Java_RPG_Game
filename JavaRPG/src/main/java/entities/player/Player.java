@@ -4,9 +4,10 @@ import dbm.DatabaseConnection;
 import dbm.DatabaseQuery;
 import dbm.ItemValues;
 import entities.GameObject;
-import log.LogController;
 
 import java.util.logging.Level;
+
+import static log.LogController.log;
 
 public abstract class Player extends GameObject implements PlayerActions{
 
@@ -29,7 +30,7 @@ public abstract class Player extends GameObject implements PlayerActions{
     private String currentArmour;
 
     public Player(){
-        LogController.log(Level.CONFIG, "New player created");
+        log(Level.CONFIG, "New player created");
         setObjectName("Player");
         setLevel(1);
         setExperience(0);
@@ -196,6 +197,78 @@ public abstract class Player extends GameObject implements PlayerActions{
         DatabaseQuery initialDbSetup = new DatabaseQuery(DatabaseConnection.getConnection());
         databaseID = initialDbSetup.createNewPlayer(playerName);
         initialDbSetup.addToInventory(ItemValues.getItemId("Leather armour"), databaseID);
+        switch (className){
+            case "Rogue" -> initialDbSetup.addToInventory(ItemValues.getItemId("dagger"), databaseID);
+            case "Cleric" -> initialDbSetup.addToInventory(ItemValues.getItemId("mace"), databaseID);
+            case "Fighter" -> initialDbSetup.addToInventory(ItemValues.getItemId("hand axe"), databaseID);
+            case "Wizard" -> initialDbSetup.addToInventory(ItemValues.getItemId("club"), databaseID);
+        }
     }
 
+    public void equipArmour(String armourName){
+        DatabaseQuery equipArmour = new DatabaseQuery(DatabaseConnection.getConnection());
+        if(currentArmour.isEmpty()){
+            equipArmour(armourName, equipArmour);
+        }
+        else{
+            unequipArmour();
+            equipArmour(armourName, equipArmour);
+        }
+    }
+
+    public void unequipArmour(){
+        if(currentArmour.isEmpty()){
+            log(Level.INFO, "Player was unable to unequip armour, as player had no armour equipped.");
+        }
+        else {
+            DatabaseQuery unequipArmourQuery = new DatabaseQuery(DatabaseConnection.getConnection());
+            int acBonus = unequipArmourQuery.getArmourBonus(ItemValues.getItemId(currentArmour.toLowerCase()));
+            unequipArmourQuery.addToInventory(ItemValues.getItemId(currentArmour.toLowerCase()), databaseID);
+            log(Level.INFO, "Player removed " + currentArmour + " from their equipped items.");
+            armourClass = -acBonus;
+            currentArmour = "";
+        }
+    }
+
+    private void equipArmour(String armourName, DatabaseQuery equipArmour) {
+        int newArmourBonus = equipArmour.getArmourBonus(ItemValues.getItemId(currentArmour.toLowerCase()));
+        equipArmour.removeFromInventory(ItemValues.getItemId(armourName.toLowerCase()),databaseID);
+        armourClass += newArmourBonus;
+        currentArmour = armourName;
+        log(Level.INFO, "Player equipped " + currentArmour + " from their inventory.");
+    }
+
+    public void equipWeapon(String weaponName){
+        if(currentWeapon.isEmpty()){
+            equipWeapon(weaponName);
+        }
+        else{
+            unequipWeapon();
+            equipWeapon(weaponName);
+        }
+    }
+
+    public void unequipWeapon(){
+        if(currentWeapon.isEmpty()){
+            log(Level.INFO, "Player was unable to unequip weapon, as player had no weapon equipped.");
+        }
+        else {
+            DatabaseQuery unequipWeaponQuery = new DatabaseQuery(DatabaseConnection.getConnection());
+            int[] attackModifiers = unequipWeaponQuery.getWeaponModifiers(ItemValues.getItemId(currentWeapon));
+            unequipWeaponQuery.addToInventory(ItemValues.getItemId(currentWeapon.toLowerCase()), databaseID);
+            log(Level.INFO, "Player removed " + currentWeapon + " from their equipped items.");
+            attackBonus -= attackModifiers[0];
+            damageModifier -= attackModifiers[1];
+            currentWeapon = "";
+        }
+    }
+
+    private void equipWeapon(String weaponName, DatabaseQuery equipWeapon){
+        int[] attackModifiers = equipWeapon.getWeaponModifiers(ItemValues.getItemId(currentWeapon.toLowerCase()));
+        equipWeapon.removeFromInventory(ItemValues.getItemId(weaponName.toLowerCase()),databaseID);
+        attackBonus += attackModifiers[0];
+        damageModifier += attackModifiers[1];
+        currentWeapon = weaponName;
+        log(Level.INFO, "Player equipped " + currentWeapon + " from their inventory.");
+    }
 }
