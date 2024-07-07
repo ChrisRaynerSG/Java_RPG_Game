@@ -2,9 +2,11 @@ package entities.enemies;
 
 public class Goblin extends Enemy {
     public Goblin(){
-        this.setObjectName("Goblin");
-        this.setMaxHealth(100);
-        this.setCurrentHealth(getMaxHealth());
-        this.setExperienceGiven(50);
+        setObjectName("Goblin");
+        setMaxHealth(100);
+        setCurrentHealth(getMaxHealth());
+        setExperienceGiven(50);
+        setGoldGiven(10);
+        setDescription("A puny goblin, foul mouthed and ill tempered");
     }
 }

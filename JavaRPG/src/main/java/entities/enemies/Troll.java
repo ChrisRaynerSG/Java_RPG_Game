@@ -6,5 +6,6 @@ public class Troll extends Enemy{
         this.setMaxHealth(500);
         this.setCurrentHealth(getMaxHealth());
         this.setExperienceGiven(250);
+        this.setGoldGiven(50);
     }
 }

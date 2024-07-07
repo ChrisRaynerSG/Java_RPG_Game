@@ -8,6 +8,7 @@ public abstract class GameObject{
     private static int initialID;
     private int ID;
     private String objectName;
+    private String description;
     private int xCoordinate;
     private int yCoordinate;
     private boolean isVisible;
@@ -52,5 +53,12 @@ public abstract class GameObject{
 
     public void setVisible(boolean visible) {
         isVisible = visible;
+    }
+
+    public String getDescription(){
+        return description;
+    }
+    public void setDescription(String description){
+        this.description = description;
     }
 }

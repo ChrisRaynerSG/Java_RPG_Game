@@ -6,5 +6,6 @@ public class Kobold extends Enemy {
         this.setMaxHealth(75);
         this.setCurrentHealth(getMaxHealth());
         this.setExperienceGiven(25);
+        this.setGoldGiven(5);
     }
 }

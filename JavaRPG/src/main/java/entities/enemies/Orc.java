@@ -6,5 +6,6 @@ public class Orc extends Enemy {
         this.setMaxHealth(200);
         this.setCurrentHealth(getMaxHealth());
         this.setExperienceGiven(100);
+        this.setGoldGiven(10);
     }
 }

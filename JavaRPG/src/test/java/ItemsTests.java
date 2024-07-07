@@ -18,7 +18,7 @@ public class ItemsTests {
     @DisplayName("Given item name of Dagger then item ID of 9 should be returned")
     void givenItemNameDaggerThen9ShouldReturn(){
         int expected = 16;
-        String input = "Dagger";
+        String input = "dagger";
         int actual = ItemValues.getItemId(input);
         Assertions.assertEquals(expected,actual);
     }
