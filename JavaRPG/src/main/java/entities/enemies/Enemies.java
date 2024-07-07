@@ -4,7 +4,10 @@ public enum Enemies {
     GOBLIN(0, "Goblin"),
     KOBOLD(1, "Kobold"),
     ORC(2, "Orc"),
-    TROLL(3,"Troll");
+    TROLL(3,"Troll"),
+    ZOMBIE(4,"Zombie"),
+    BRIGAND(5,"Brigand"),
+    ASSASSIN(6,"Assassin");
 
     private int enemyTypeID;
     private String enemyType;

@@ -26,6 +26,7 @@ public abstract class Player extends GameObject implements PlayerActions{
     private int armourClass;
     private int totalAbilities;
     private int abilitiesRemaining;
+    private int gold;
     private String currentWeapon;
     private String currentArmour;
 
@@ -40,6 +41,7 @@ public abstract class Player extends GameObject implements PlayerActions{
         setTotalAbilities(3);
         setAbilitiesRemaining(getTotalAbilities());
         setArmourClass(10);
+        setDescription("The player!");
 
     }
 
@@ -160,6 +162,8 @@ public abstract class Player extends GameObject implements PlayerActions{
     public String getCurrentArmour(){
         return currentArmour;
     }
+
+
 
     public int isExperienceEnoughToLevelUp(int experience, int level){
         this.level = level;

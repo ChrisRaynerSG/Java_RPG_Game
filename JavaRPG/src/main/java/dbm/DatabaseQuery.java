@@ -103,4 +103,9 @@ public class DatabaseQuery implements Queryable {
         updateTable(queryHighScoreUpdate);
     }
 
+    public ResultSet equippableItemsList(){
+        String getIfItemEquippableQuery = SELECT + "item_name FROM " + DATABASE_NAME + "." + GAME_ITEMS_TABLE + " WHERE item_id BETWEEN 9 AND 34";
+        return getResult(getIfItemEquippableQuery);
+    }
+
 }

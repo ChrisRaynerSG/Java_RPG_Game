@@ -13,15 +13,15 @@ import static log.LogController.log;
 
 public class AppWindow extends JFrame implements ActionListener {
 
-    private static Dimension windowSize;
-    private static final String GAME_STRING = "Game";
-    private static final String MAIN_MENU_STRING = "Main Menu";
-    private static final String MENU_STRING = "Game Menu";
-    private static final String SAVE_STRING = "Save";
-    private static final String LOAD_STRING = "Load";
-    private static final String SETTINGS_STRING = "Settings";
-    private static String gameTextString = "";
-
+    public static Dimension windowSize;
+    public static final String GAME_STRING = "Game";
+    public static final String MAIN_MENU_STRING = "Main Menu";
+    public static final String MENU_STRING = "Game Menu";
+    public static final String SAVE_STRING = "Save";
+    public static final String LOAD_STRING = "Load";
+    public static final String SETTINGS_STRING = "Settings";
+    public static final String INVENTORY_STRING = "Inventory";
+    public static String gameTextString = "";
 
     JButton newGameButton = new JButton("New Game");
     JButton loadGameMenuButton = new JButton ("Load Game");
@@ -41,7 +41,7 @@ public class AppWindow extends JFrame implements ActionListener {
     public static JButton largeWindow = new JButton("Large");
     public static JTextArea gameText = new JTextArea();
 
-    static CardLayout layout = new CardLayout();
+    public static CardLayout layout = new CardLayout();
 
     public static JPanel mainPanel = new JPanel();
     public static JPanel startMenuPanel = new JPanel();
@@ -50,6 +50,7 @@ public class AppWindow extends JFrame implements ActionListener {
     public static JPanel settingsPanel = new JPanel();
     public static JPanel saveScreenPanel = new JPanel();
     public static JPanel loadScreenPanel = new JPanel();
+    public static InventoryPanel inventoryPanel = new InventoryPanel(1);
 
     BoxLayout mainMenuLayout = new BoxLayout(startMenuPanel,BoxLayout.Y_AXIS);
     BoxLayout gamePanelLayout = new BoxLayout(gameMenuPanel,BoxLayout.Y_AXIS);
@@ -121,6 +122,7 @@ public class AppWindow extends JFrame implements ActionListener {
         mainPanel.add(settingsPanel, SETTINGS_STRING);
         mainPanel.add(saveScreenPanel, SAVE_STRING);
         mainPanel.add(loadScreenPanel, LOAD_STRING);
+        mainPanel.add(inventoryPanel, INVENTORY_STRING);
 
         add(mainPanel);
         layout.show(mainPanel, MAIN_MENU_STRING);
@@ -164,9 +166,10 @@ public class AppWindow extends JFrame implements ActionListener {
             layout.show(mainPanel, LOAD_STRING);
         }
         else if (source == newGameButton) {
-            layout.show(mainPanel, GAME_STRING);
+            layout.show(mainPanel, INVENTORY_STRING);
             NewGame newGame = NewGame.getNewGame();
             newGame.startGame();
+
         }
         else if (source == resumeButton) {
             layout.show(mainPanel, GAME_STRING);

@@ -6,6 +6,7 @@ public class Enemy extends GameObject {
     private int maxHealth;
     private int currentHealth;
     private int experienceGiven;
+    private int goldGiven;
 
     public int getMaxHealth() {
         return maxHealth;
@@ -31,5 +32,14 @@ public class Enemy extends GameObject {
         this.experienceGiven = experienceGiven;
     }
 
+    public int getGoldGiven(){
+        return goldGiven;
+    }
+    public void setGoldGiven(int goldGiven){
+        this.goldGiven = goldGiven;
+    }
 
+    public boolean isDead(){
+        return currentHealth < 0;
+    }
 }
