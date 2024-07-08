@@ -30,14 +30,15 @@ public class DatabaseInstantiation {
                 log(Level.FINER, "rpg_database table created");
             }
             log(Level.FINE, "rpg_database tables initialised");
-            for(String values : GAME_ITEMS_ARRAY){
-                createTable.execute(INSERT_INTO + GAME_ITEMS_TABLE + " " + ITEMS_TABLE_COLUMNS + " VALUES " + values);
+            for(String values : GAME_ITEMS_LIST){
+                createTable.execute(INSERT_INTO + GAME_ITEMS_TABLE + " " + ITEMS_TABLE_COLUMNS + " VALUES (" + values +")");
                 log(Level.FINER, "Successfully added game item");
             }
             log(Level.FINE, "Game items successfully populated");
         }
         catch (SQLException e){
             log(Level.SEVERE, "Database failed to instantiate");
+            e.printStackTrace();
         }
     }
 }
