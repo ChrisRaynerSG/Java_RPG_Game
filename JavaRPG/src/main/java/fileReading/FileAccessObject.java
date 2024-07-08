@@ -11,7 +11,7 @@ import java.util.logging.Level;
 public class FileAccessObject {
     public static List<String> getItemsAsStrings(){
 
-        try(BufferedReader bufferedReader = new BufferedReader(new FileReader("src/main/resources/items.csv"))){
+        try(BufferedReader bufferedReader = new BufferedReader(new FileReader(getFileName()))){
             return bufferedReader.lines()
                     .skip(1)
                     .toList();
@@ -21,5 +21,9 @@ public class FileAccessObject {
             e.printStackTrace();
             return List.of();
         }
+    }
+
+    public static String getFileName() {
+        return "src/main/resources/items.csv";
     }
 }
