@@ -34,6 +34,7 @@ public class SettingsFileRead {
         }
         return new Dimension(500,500);
     }
+
     public static ArrayList<String> readSettingsFileLines(){
         ArrayList<String> lines = new ArrayList<>();
         try{

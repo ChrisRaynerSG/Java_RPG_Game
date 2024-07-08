@@ -9,6 +9,7 @@ import java.awt.*;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import java.util.ArrayList;
+import java.util.Arrays;
 
 public class InventoryPanel extends JPanel implements ActionListener {
 
@@ -38,11 +39,9 @@ public class InventoryPanel extends JPanel implements ActionListener {
             }
         };
 
-        inventoryModel.addColumn("Item");
-        inventoryModel.addColumn("Amount");
-        inventoryModel.addColumn("Value");
-        inventoryModel.addColumn("Total Value");
-        inventoryModel.addColumn("Action");
+        for (String columnHeading : Arrays.asList("Item", "Amount", "Value", "Total Value", "Action")) {
+            inventoryModel.addColumn(columnHeading);
+        }
 
         playerInventory = DatabaseResults.getPlayerInventory(playerId);
 

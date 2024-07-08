@@ -7,6 +7,7 @@ import java.awt.*;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import java.time.LocalTime;
+import java.util.Arrays;
 import java.util.logging.Level;
 
 import static log.LogController.log;
@@ -71,34 +72,12 @@ public class AppWindow extends JFrame implements ActionListener {
     }
     private void addButtons(){
         //Button action listeners
-        resumeButton.addActionListener(this);
-        exitButton.addActionListener(this);
-        menuButtonGame.addActionListener(this);
-        mainMenuButtonSettings.addActionListener(this);
-        menuButtonSave.addActionListener(this);
-        menuButtonLoad.addActionListener(this);
-        settingsButton.addActionListener(this);
-        saveButton.addActionListener(this);
-        smallWindow.addActionListener(this);
-        mediumWindow.addActionListener(this);
-        largeWindow.addActionListener(this);
-        newGameButton.addActionListener(this);
-        loadGameMenuButton.addActionListener(this);
-        mainMenuButtonGameMenu.addActionListener(this);
+        for (JButton jButton : Arrays.asList(resumeButton, exitButton, menuButtonGame, mainMenuButtonSettings, menuButtonSave, menuButtonLoad, settingsButton, saveButton, smallWindow, mediumWindow, largeWindow, newGameButton, loadGameMenuButton, mainMenuButtonGameMenu)) {
+            jButton.addActionListener(this);
+        }
 
-        startMenuPanel.add(newGameButton);
-        startMenuPanel.add(loadGameMenuButton);
-        startMenuPanel.add(settingsButton);
-        startMenuPanel.add(exitButton);
-
-        startMenuPanel.setLayout(mainMenuLayout);
-
-        gameMenuPanel.add(resumeButton);
-        gameMenuPanel.add(saveButton);
-        gameMenuPanel.add(loadButton);
-        gameMenuPanel.add(mainMenuButtonGameMenu);
-
-        gameMenuPanel.setLayout(new FlowLayout());
+        setupStartMenuPanel();
+        setupGameMenuPanel();
 
         gamePanel.add(menuButtonGame);
         gameText.setSize(400,400);
@@ -106,10 +85,9 @@ public class AppWindow extends JFrame implements ActionListener {
         gameText.setWrapStyleWord(true);
         gamePanel.add(gameText);
 
-        settingsPanel.add(smallWindow);
-        settingsPanel.add(mediumWindow);
-        settingsPanel.add(largeWindow);
-        settingsPanel.add(mainMenuButtonSettings);
+        for (JButton jButton : Arrays.asList(smallWindow, mediumWindow, largeWindow, mainMenuButtonSettings)) {
+            settingsPanel.add(jButton);
+        }
         settingsPanel.setLayout(new FlowLayout());
 
         saveButtons();
@@ -129,8 +107,25 @@ public class AppWindow extends JFrame implements ActionListener {
         log(Level.FINE, "Window populated.");
     }
 
+    private void setupStartMenuPanel() {
+        for (JButton jButton : Arrays.asList(newGameButton, loadGameMenuButton, settingsButton, exitButton)) {
+            startMenuPanel.add(jButton);
+        }
+
+        startMenuPanel.setLayout(mainMenuLayout);
+    }
+
+    private static void setupGameMenuPanel() {
+        for (JButton jButton : Arrays.asList(resumeButton, saveButton, loadButton, mainMenuButtonGameMenu)) {
+            gameMenuPanel.add(jButton);
+        }
+
+        gameMenuPanel.setLayout(new FlowLayout());
+    }
+
     public void actionPerformed(ActionEvent event){
         Object source = event.getSource();
+        Dimension screenDimensions = Toolkit.getDefaultToolkit().getScreenSize();
 
         String buttonPressed = "Button pressed";
         if(source == exitButton){
@@ -180,19 +175,20 @@ public class AppWindow extends JFrame implements ActionListener {
         else if(source == smallWindow){
             log(Level.INFO, buttonPressed);
             SettingsFileWrite.writeToFileWindowSize("Window size: Small");
-            windowSize(500,500);
+            windowSize(screenDimensions.width/2,screenDimensions.height/2);
         }
         else if(source == mediumWindow){
             log(Level.INFO, buttonPressed);
             SettingsFileWrite.writeToFileWindowSize("Window size: Medium");
-            windowSize(1280,720);
+            windowSize(screenDimensions.width/4*3,screenDimensions.height/4*3);
         }
         else if(source == largeWindow){
             log(Level.INFO, buttonPressed);
             SettingsFileWrite.writeToFileWindowSize("Window size: Large");
-            windowSize(1920,1080);
+            windowSize(screenDimensions.width,screenDimensions.height);
         }
     }
+
     private void windowSize(int width, int height){
         setResizable(true);
         windowSize = new Dimension(width,height);
@@ -201,11 +197,13 @@ public class AppWindow extends JFrame implements ActionListener {
         requestFocus();
         setResizable(false);
     }
+
     private void saveButtons(){
         for (int i =0; i<6; i++){
             saveScreenPanel.add(new JButton("Save " +i));
         }
     }
+
     public static void setGameTextString(String string){
         gameTextString = string;
     }

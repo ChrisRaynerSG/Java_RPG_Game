@@ -9,8 +9,6 @@ import static log.LogController.log;
 
 public class SettingsFileWrite {
 
-
-
     public static void writeToFileInit(String config){
         try{
             FileWriter writeToFile = new FileWriter("src/main/resources/Settings.cfg");
@@ -21,6 +19,7 @@ public class SettingsFileWrite {
             throw new RuntimeException(e);
         }
     }
+    
     public static void writeToFileWindowSize(String config){
         try{
             ArrayList<String> lines = SettingsFileRead.readSettingsFileLines();

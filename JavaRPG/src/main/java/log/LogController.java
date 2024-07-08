@@ -29,20 +29,6 @@ public class LogController {
         }
     }
     public static void log(Level level, String message){
-        if(level == Level.SEVERE){
-            logger.severe(message);
-        } else if (level == Level.WARNING) {
-            logger.warning(message);
-        } else if (level == Level.INFO) {
-            logger.info(message);
-        } else if (level == Level.CONFIG) {
-            logger.config(message);
-        } else if (level == Level.FINE){
-            logger.fine(message);
-        }else if (level == Level.FINER){
-            logger.finer(message);
-        }else if (level == Level.FINEST){
-            logger.finest(message);
-        }
+        logger.log(level,message);
     }
 }
