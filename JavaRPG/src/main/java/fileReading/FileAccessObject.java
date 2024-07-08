@@ -9,9 +9,16 @@ import java.util.List;
 import java.util.logging.Level;
 
 public class FileAccessObject {
-    public static List<String> getItemsAsStrings(){
 
-        try(BufferedReader bufferedReader = new BufferedReader(new FileReader(getFileName()))){
+    public static final String ITEMS_CSV_PATH = "src/main/resources/items.csv";
+
+    public static List<String> getItemsAsStrings(){
+        return getStringDataFromFile(ITEMS_CSV_PATH);
+    }
+
+    public static List<String> getStringDataFromFile(String fileName){
+        LogController.log(Level.FINE, "Reading file: " + fileName);
+        try(BufferedReader bufferedReader = new BufferedReader(new FileReader(fileName))){
             return bufferedReader.lines()
                     .skip(1)
                     .toList();
@@ -22,8 +29,5 @@ public class FileAccessObject {
             return List.of();
         }
     }
-
-    public static String getFileName() {
-        return "src/main/resources/items.csv";
-    }
 }
+
