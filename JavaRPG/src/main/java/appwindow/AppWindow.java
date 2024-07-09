@@ -175,21 +175,21 @@ public class AppWindow extends JFrame implements ActionListener {
         else if(source == smallWindow){
             log(Level.INFO, buttonPressed);
             SettingsFileWrite.writeToFileWindowSize("Window size: Small");
-            windowSize(screenDimensions.width/2,screenDimensions.height/2);
+            setWindowSize(screenDimensions.width/2,screenDimensions.height/2);
         }
         else if(source == mediumWindow){
             log(Level.INFO, buttonPressed);
             SettingsFileWrite.writeToFileWindowSize("Window size: Medium");
-            windowSize(screenDimensions.width/4*3,screenDimensions.height/4*3);
+            setWindowSize(screenDimensions.width/4*3,screenDimensions.height/4*3);
         }
         else if(source == largeWindow){
             log(Level.INFO, buttonPressed);
             SettingsFileWrite.writeToFileWindowSize("Window size: Large");
-            windowSize(screenDimensions.width,screenDimensions.height);
+            setWindowSize(screenDimensions.width,screenDimensions.height);
         }
     }
 
-    private void windowSize(int width, int height){
+    private void setWindowSize(int width, int height){
         setResizable(true);
         windowSize = new Dimension(width,height);
         setSize(windowSize);

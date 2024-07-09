@@ -6,9 +6,11 @@ import java.time.LocalDate;
 import java.util.logging.*;
 
 public class LogController {
-    private static final Logger logger = Logger.getLogger(LogController.class.getName());
+    private static final Logger logger = initializeLogger();
 
-    public LogController(){
+
+    private static Logger initializeLogger(){
+        Logger logger = Logger.getLogger(LogController.class.getName());
 
         ConsoleHandler consoleHandler = new ConsoleHandler();
         consoleHandler.setLevel(Level.INFO);
@@ -27,7 +29,14 @@ public class LogController {
         catch(IOException e){
             throw new RuntimeException(e);
         }
+
+        return logger;
     }
+
+    public static int getHandlerCount(){
+        return logger.getHandlers().length;
+    }
+
     public static void log(Level level, String message){
         logger.log(level,message);
     }

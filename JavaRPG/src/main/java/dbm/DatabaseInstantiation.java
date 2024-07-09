@@ -27,7 +27,7 @@ public class DatabaseInstantiation {
 
             for(String tableName : dbTables){
                 createTable.execute(CREATE_TABLE + tableName);
-                log(Level.FINER, "rpg_database table created");
+                log(Level.FINER,  tableName+" table created");
             }
             log(Level.FINE, "rpg_database tables initialised");
             for(String values : GAME_ITEMS_LIST){
