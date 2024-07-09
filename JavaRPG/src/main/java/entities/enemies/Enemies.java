@@ -19,6 +19,7 @@ public enum Enemies {
     public int getEnemyID(){
         return enemyTypeID;
     }
+
     public static String getEnemyType(int enemyID){
         return switch(enemyID){
             case 0 -> GOBLIN.enemyType;

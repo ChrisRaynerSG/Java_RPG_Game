@@ -1,0 +1,41 @@
+item_name,item_value,is_key_item,item_description,healing_amount,armour_bonus,attack_bonus,damage_bonus
+'Weak healing potion',20,false,'A weak potion healing 50HP.',50,NULL,NULL,NULL
+'Average healing potion',50,false,'An average potion healing 100HP.',100,NULL,NULL,NULL
+'Strong healing potion',100,false,'A strong potion healing 200HP.',200,NULL,NULL,NULL
+'Max healing potion',250,false,'A very strong potion healing all health lost.',2147483647,NULL,NULL,NULL
+'Ability potion',200,false,'A potion that restores all ability points.',NULL,NULL,NULL,NULL
+'Ability up potion',1000,false,'A potion that permanently grants an additional ability point.',NULL,NULL,NULL,NULL
+'XP potion',500,false,'A potion that instantly grants 1000xp.',NULL,NULL,NULL,NULL
+'Elixir of undying',1000,false,'A magical drink that will prevent death the next time health drops below 0.',NULL,NULL,NULL,NULL
+'Leather armour',250,false,'A set of Leather armour providing +1 AC.',NULL,1,NULL,NULL
+'Padded armour',400,false,'A set of padded armour providing +2 AC.',NULL,2,NULL,NULL
+'Chain armour',600,false,'A set of chain armour providing +3 AC.',NULL,3,NULL,NULL
+'Splint armour',800,false,'A set of splint armour providing +4 AC.',NULL,4,NULL,NULL
+'Half plate',1000,false,'Half plate armour providing +6 AC.',NULL,6,NULL,NULL
+'Full plate',1500,false,'Full plate armour providing +8 AC.',NULL,8,NULL,NULL
+'Magic plate',2000,false,'Magical full plate providing +10 AC.',NULL,10,NULL,NULL
+'Dagger',50,false,'A simple dagger granting +1 attack bonus and x2 damage modifier.',NULL,NULL,1,2
+'Short sword',100,false,'A simple short sword granting +2 attack bonus and x2 damage modifier.',NULL,NULL,2,2
+'Rapier',300,false,'An elegant rapier granting +2 attack bonus and x4 damage modifier.',NULL,NULL,2,4
+'Broadsword',300,false,'An imposing broadsword granting +3 attack bonus and x3 damage modifier.',NULL,NULL,3,3
+'Longsword',500,false,'A deadly longsword granting +4 attack bonus and x3 damage modifier.',NULL,NULL,4,3
+'Bastard sword',750,false,'Why are you laughing? A mighty sword granting +2 attack bonus and x5 damage modifier.',NULL,NULL,2,5
+'Greatsword',1000,false,'A comically large greatsword granting +2 attack bonus and x6 damage modifier.',NULL,NULL,2,6
+'Magical greatsword',2500,false,'A magical weapon of gods granting +5 attack bonus and x10 damage modifier.',NULL,NULL,5,10
+'Hand axe',100,false,'A simple axe granting +0 attack bonus and x3 damage modifier.',NULL,NULL,0,3
+'Battle axe',200,false,'A dangerous axe granting +0 attack bonus and x4 damage modifier.',NULL,NULL,0,4
+'Great axe',400,false,'A mighty Axe granting -1 attack bonus and x8 damage modifier.',NULL,NULL,-1,8
+'Club',10,false,'A glorified stick granting +1 attack bonus and x1 damage modifier.',NULL,NULL,1,1
+'Mace',75,false,'Try not to get it in your eyes - blunt weapon granting +1 attack bonus and x3 damage modifier.',NULL,NULL,1,3
+'Heavy mace',250,false,'Like a mace, just bigger granting +1 attack bonus and x4 damage modifier.',NULL,NULL,1,4
+'Great mace',500,false,'Like a heavy mace, but a lot bigger granting +0 attack bonus and x8 damage modifier.',NULL,NULL,0,8
+'Dagger of Murder',4000,false,'A lightweight magical dagger, covered in the blood of baby giraffes granting +10 attack bonus and x10 damage modifier.',NULL,NULL,10,10
+'Sword of slicing',4000,false,'Is it even possible to miss with this? A magical sword granting +20 attack bonus and x6 damage modifier.',NULL,NULL,20,6
+'Mace of ten thousand bruises',5000,false,'This weapon does the most damage in the game, bruises hurt okay. A magical mace granting +4 attack bonus and x15 damage modifier.',NULL,NULL,4,15
+'Rubber chicken',5,false,'Why would you even equip this? A joke chicken granting -4 attack bonus and x1 damage modifier.',NULL,NULL,-4,1
+'Dungeon key',1,true,'A key to unlock doors in a dungeon, but which one?',NULL,NULL,NULL,NULL
+'Castle key',1,true,'A key to unlock doors in a castle, but where is the castle?',NULL,NULL,NULL,NULL
+'Tomb key',1,true,'A key to unlock doors in the tomb of one million giant bunnies of doom and despair and general chaos. But why would you want to go there?',NULL,NULL,NULL,NULL
+'Orb of orbing',1000000,true,'With this magical orb, you can orb all you like, because its the orb of orbing of course. The most valuable item in the game, shame you wont be able to sell it.',NULL,NULL,NULL,NULL
+'Glorb of Gilbing',1024,false,'Gilberts magical orb with many glorbing abilities.',NULL,NULL,22,22
+'Wand of christ',300,true,'very important item that summons mormons',NULL,NULL,NULL,NULL

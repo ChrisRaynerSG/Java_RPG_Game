@@ -9,7 +9,6 @@ import static log.LogController.log;
 public class SettingsFileInit {
 
     public SettingsFileInit(){
-
         try{
             File settingsFile = new File("src/main/resources/Settings.cfg");
             if(settingsFile.createNewFile()){

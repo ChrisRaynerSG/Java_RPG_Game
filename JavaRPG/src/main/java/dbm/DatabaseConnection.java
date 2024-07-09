@@ -67,7 +67,8 @@ public class DatabaseConnection {
                     properties.getProperty(PASSWORD));
         }
         catch (SQLException e){
-            log(Level.WARNING, "Unable to create database rpg_game");
+            log(Level.WARNING, "Unable to create database rpg_database");
+            e.printStackTrace();
             return null;
         }
     }

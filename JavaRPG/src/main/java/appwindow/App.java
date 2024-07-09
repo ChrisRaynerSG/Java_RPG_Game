@@ -1,19 +1,14 @@
 package appwindow;
 
-
-import dbm.DatabaseConnection;
-import dbm.DatabaseQuery;
-import dbm.DatabaseResults;
 import log.LogController;
 
-import java.sql.Connection;
-import java.util.ArrayList;
-import java.util.Arrays;
+import java.util.logging.Level;
+
 
 public class App {
     public static void main(String[] args) {
 
-        LogController logController = new LogController();
+        LogController.log(Level.INFO,"Running main method in App");
         SettingsFileInit settingsFileInit = new SettingsFileInit();
         AppWindow window = new AppWindow();
 
